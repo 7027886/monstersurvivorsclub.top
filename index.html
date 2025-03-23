@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Survivors - Epic Survival Adventure Game | Play Now</title>
+    <meta name="description" content="Play Monster Survivors online - An epic survival adventure where you battle endless waves of monsters. Experience thrilling gameplay and upgrade your character to become the ultimate survivor.">
+    <link rel="canonical" href="https://monstersurvivors.com">
+    <meta property="og:title" content="Monster Survivors - Epic Survival Adventure Game">
+    <meta property="og:description" content="Battle endless waves of monsters in this thrilling survival adventure game. Upgrade your character and become the ultimate survivor!">
+    <meta property="og:url" content="https://monstersurvivors.com">
+    <meta property="og:type" content="website">
+    <meta name="keywords" content="Monster Survivors, survival game, online game, action game, monster battle, roguelike">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-blue': '#007AFF',
+                        'apple-gray': '#8E8E93',
+                        'apple-black': '#1D1D1F',
+                        'apple-white': '#F5F5F7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F7;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .game-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding-top: 75%; /* 4:3 Aspect Ratio for mobile */
+            }
+        }
+    </style>
+</head>
+<body class="bg-apple-white text-apple-black">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 bg-apple-blue bg-opacity-95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto">
+            <nav class="flex items-center justify-between py-4 px-4 md:px-8">
+                <a href="/" class="text-2xl font-bold text-white hover:text-opacity-90 transition-colors">
+                    MonsterSurvivors
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#play" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">Play Now</a>
+                    <a href="#about" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">About</a>
+                </div>
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-apple-blue">
+            <div class="px-4 py-2 space-y-3">
+                <a href="#play" class="block text-white hover:text-opacity-90 py-2">Play Now</a>
+                <a href="#about" class="block text-white hover:text-opacity-90 py-2">About</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-24">
+        <!-- 游戏界面 -->
+        <section id="play" class="mb-20">
+            <div class="game-container">
+                <iframe 
+                    src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html"
+                    class="game-frame"
+                    title="Play Monster Survivors Online"
+                    allow="fullscreen"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- 关于部分 -->
+        <section id="about" class="mb-20">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- 游戏介绍 -->
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h2 class="text-3xl font-bold mb-6 text-apple-black">About The Game</h2>
+                    <div class="space-y-4">
+                        <p class="text-lg text-apple-gray">
+                            Monster Survivors is an exciting survival action game where players face endless waves of monsters in a dynamically evolving world.
+                        </p>
+                        <p class="text-lg text-apple-gray">
+                            With each run, players can unlock new abilities, discover powerful combinations, and challenge themselves to survive longer against increasingly difficult enemies.
+                        </p>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-3 text-apple-black">Key Features:</h3>
+                            <ul class="list-disc list-inside text-apple-gray space-y-2">
+                                <li>Roguelike survival gameplay</li>
+                                <li>Multiple character abilities</li>
+                                <li>Progressive difficulty system</li>
+                                <li>Unique power-up combinations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 开发者介绍 -->
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h2 class="text-3xl font-bold mb-6 text-apple-black">About Developer</h2>
+                    <div class="space-y-4">
+                        <p class="text-lg text-apple-gray">
+                            We are a passionate team of game developers dedicated to creating engaging and entertaining experiences for players worldwide.
+                        </p>
+                        <p class="text-lg text-apple-gray">
+                            Our mission is to blend classic gaming elements with modern mechanics to create unique and enjoyable games that challenge and delight players.
+                        </p>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-3 text-apple-black">Contact Us:</h3>
+                            <ul class="space-y-2 text-apple-gray">
+                                <li>Email: contact@monstersurvivors.com</li>
+                                <li>Twitter: @MonsterSurvivors</li>
+                                <li>Discord: MonsterSurvivors Community</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-apple-black text-white py-12 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">Monster Survivors</h2>
+                    <p class="text-apple-gray text-lg">Experience the ultimate survival adventure game online.</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-apple-gray text-lg">&copy; 2024 MonsterSurvivors.com</p>
+                    <p class="text-apple-gray text-lg">All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
