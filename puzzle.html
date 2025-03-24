@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字拼图</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .tile:hover {
+            transform: scale(0.95);
+        }
+        .empty {
+            background-color: #333;
+            cursor: default;
+        }
+        .empty:hover {
+            transform: none;
+        }
+        .stats {
+            font-size: 24px;
+            margin: 20px;
+            text-align: center;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="stats">
+        <div>移动次数: <span id="moves">0</span></div>
+    </div>
+    <div class="game-container" id="gameBoard"></div>
+    <button onclick="shuffleTiles()">重新开始</button>
+    <script>
+        const gameBoard = document.getElementById('gameBoard');
+        const movesDisplay = document.getElementById('moves');
+        let tiles = [];
+        let emptyTile = 9;
+        let moves = 0;
+
+        function createTile(number) {
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            if (number === 9) {
+                tile.classList.add('empty');
+            } else {
+                tile.textContent = number;
+            }
+            tile.addEventListener('click', () => moveTile(number));
+            return tile;
+        }
+
+        function initializeGame() {
+            gameBoard.innerHTML = '';
+            tiles = Array.from({length: 9}, (_, i) => i + 1);
+            moves = 0;
+            movesDisplay.textContent = moves;
+            
+            tiles.forEach(number => {
+                const tile = createTile(number);
+                gameBoard.appendChild(tile);
+            });
+        }
+
+        function moveTile(number) {
+            if (!isMovable(number)) {
+                return;
+            }
+
+            const currentIndex = tiles.indexOf(number);
+            const emptyIndex = tiles.indexOf(9);
+            
+            // 交换位置
+            [tiles[currentIndex], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[currentIndex]];
+            emptyTile = number;
+            
+            // 更新显示
+            updateBoard();
+            moves++;
+            movesDisplay.textContent = moves;
+            
+            // 检查是否完成
+            if (isComplete()) {
+                setTimeout(() => {
+                    alert(`恭喜！你用了 ${moves} 步完成了拼图！`);
+                }, 100);
+            }
+        }
+
+        function isMovable(number) {
+            const currentIndex = tiles.indexOf(number);
+            const emptyIndex = tiles.indexOf(9);
+            
+            // 检查是否相邻
+            return (
+                // 同一行
+                (Math.floor(currentIndex / 3) === Math.floor(emptyIndex / 3) && 
+                 Math.abs(currentIndex % 3 - emptyIndex % 3) === 1) ||
+                // 同一列
+                (Math.abs(Math.floor(currentIndex / 3) - Math.floor(emptyIndex / 3)) === 1 && 
+                 currentIndex % 3 === emptyIndex % 3)
+            );
+        }
+
+        function updateBoard() {
+            const tileElements = gameBoard.children;
+            tiles.forEach((number, index) => {
+                tileElements[index].textContent = number === 9 ? '' : number;
+                tileElements[index].className = number === 9 ? 'tile empty' : 'tile';
+            });
+        }
+
+        function isComplete() {
+            return tiles.every((number, index) => number === index + 1);
+        }
+
+        function shuffleTiles() {
+            // 执行随机移动来打乱拼图
+            for (let i = 0; i < 100; i++) {
+                const movableTiles = tiles.filter((number, index) => 
+                    number !== 9 && isMovable(number)
+                );
+                const randomTile = movableTiles[Math.floor(Math.random() * movableTiles.length)];
+                moveTile(randomTile);
+            }
+            // 重置移动次数
+            moves = 0;
+            movesDisplay.textContent = moves;
+        }
+
+        initializeGame();
+        shuffleTiles();
+    </script>
+</body>
+</html> 
