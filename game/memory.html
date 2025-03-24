@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆翻牌</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px;
+            perspective: 1000px;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-front {
+            background-color: #2196F3;
+            transform: rotateY(180deg);
+        }
+        .card-back {
+            background-color: #90CAF9;
+        }
+        .stats {
+            font-size: 24px;
+            margin: 20px;
+            text-align: center;
+        }
+        .matched {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="stats">
+        <div>步数: <span id="moves">0</span></div>
+        <div>配对: <span id="pairs">0</span>/8</div>
+    </div>
+    <div class="game-container" id="gameBoard"></div>
+    <script>
+        const emojis = ['🎮', '🎲', '🎯', '🎨', '🎭', '🎪', '🎢', '🎠'];
+        const gameBoard = document.getElementById('gameBoard');
+        const movesDisplay = document.getElementById('moves');
+        const pairsDisplay = document.getElementById('pairs');
+        
+        let cards = [];
+        let flippedCards = [];
+        let moves = 0;
+        let pairs = 0;
+        let canFlip = true;
+
+        function createCard(emoji) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const front = document.createElement('div');
+            front.className = 'card-face card-front';
+            front.textContent = emoji;
+            
+            const back = document.createElement('div');
+            back.className = 'card-face card-back';
+            back.textContent = '?';
+            
+            card.appendChild(front);
+            card.appendChild(back);
+            
+            card.addEventListener('click', () => flipCard(card));
+            
+            return card;
+        }
+
+        function initializeGame() {
+            const gameEmojis = [...emojis, ...emojis];
+            cards = [];
+            flippedCards = [];
+            moves = 0;
+            pairs = 0;
+            canFlip = true;
+            
+            // 清空游戏板
+            gameBoard.innerHTML = '';
+            movesDisplay.textContent = moves;
+            pairsDisplay.textContent = pairs;
+            
+            // 随机排序表情
+            gameEmojis.sort(() => Math.random() - 0.5);
+            
+            // 创建卡片
+            gameEmojis.forEach(emoji => {
+                const card = createCard(emoji);
+                cards.push(card);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (!canFlip || card.classList.contains('flipped') || flippedCards.includes(card)) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                moves++;
+                movesDisplay.textContent = moves;
+                canFlip = false;
+                
+                const [card1, card2] = flippedCards;
+                const emoji1 = card1.querySelector('.card-front').textContent;
+                const emoji2 = card2.querySelector('.card-front').textContent;
+                
+                if (emoji1 === emoji2) {
+                    // 匹配成功
+                    pairs++;
+                    pairsDisplay.textContent = pairs;
+                    flippedCards.forEach(card => {
+                        card.querySelector('.card-front').classList.add('matched');
+                        card.style.cursor = 'default';
+                    });
+                    flippedCards = [];
+                    canFlip = true;
+                    
+                    if (pairs === 8) {
+                        setTimeout(() => {
+                            alert(`恭喜！你用了 ${moves} 步完成了游戏！\n点击确定重新开始。`);
+                            initializeGame();
+                        }, 500);
+                    }
+                } else {
+                    // 不匹配
+                    setTimeout(() => {
+                        flippedCards.forEach(card => card.classList.remove('flipped'));
+                        flippedCards = [];
+                        canFlip = true;
+                    }, 1000);
+                }
+            }
+        }
+
+        initializeGame();
+    </script>
+</body>
+</html> 
