@@ -11,7 +11,7 @@
         gtag('js', new Date());
         gtag('config', 'G-GRNEMQ0MSS');
     </script>
-    <title>在线游戏平台 - 免费HTML5游戏集合</title>
+    <title>HTML5游戏合集 - 经典小游戏</title>
     <meta name="description" content="免费在线游戏平台，提供多种类型的HTML5游戏，包括动作、益智、射击等多种游戏类型。">
     <meta property="og:title" content="在线游戏平台 - 免费HTML5游戏集合">
     <meta property="og:description" content="免费在线游戏平台，提供多种类型的HTML5游戏，包括动作、益智、射击等多种游戏类型。">
@@ -33,292 +33,185 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F5F5F7;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
         }
-
-        .game-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        .game-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .nav-link {
-            position: relative;
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #fff;
-            transition: width 0.3s ease;
+        .header p {
+            font-size: 1.2em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
         }
-
-        .nav-link:hover::after {
-            width: 100%;
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
-
         .game-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
         }
-
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
-
-        .game-thumbnail {
-            position: relative;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            overflow: hidden;
-            border-radius: 8px;
-        }
-
-        .game-thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .game-image {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
         }
-
-        .game-card:hover .game-thumbnail img {
+        .game-info {
+            padding: 20px;
+        }
+        .game-title {
+            font-size: 1.5em;
+            color: #333;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+        .game-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .play-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .play-button:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
             transform: scale(1.05);
         }
-
+        .game-controls {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+        }
         @media (max-width: 768px) {
-            .game-container {
-                padding-top: 75%; /* 4:3 Aspect Ratio for mobile */
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2em;
             }
         }
     </style>
 </head>
-<body class="bg-apple-white text-apple-black">
-    <!-- 导航栏 -->
-    <header class="fixed w-full top-0 z-50 bg-apple-blue bg-opacity-95 backdrop-blur-sm shadow-sm">
-        <div class="max-w-7xl mx-auto">
-            <nav class="flex items-center justify-between py-4 px-4 md:px-8">
-                <a href="/" class="text-2xl font-bold text-white hover:text-opacity-90 transition-colors">
-                    游戏中心
-                </a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#games" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">游戏列表</a>
-                    <a href="#about" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">关于我们</a>
-                </div>
-                <!-- 移动端菜单按钮 -->
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
-                    </svg>
-                </button>
-            </nav>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HTML5游戏合集</h1>
+            <p>精选六款经典小游戏，快来体验吧！</p>
         </div>
-        <!-- 移动端菜单 -->
-        <div id="mobileMenu" class="hidden md:hidden bg-apple-blue">
-            <div class="px-4 py-2 space-y-3">
-                <a href="#games" class="block text-white hover:text-opacity-90 py-2">游戏列表</a>
-                <a href="#about" class="block text-white hover:text-opacity-90 py-2">关于我们</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-24">
-        <!-- 游戏展示区域 -->
-        <section id="games" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 text-center">热门游戏</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 游戏卡片 1 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/1d5e18fa2a6c4536a4e4c8331bda63c6-512x384.jpeg" alt="2048">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">2048益智游戏</h3>
-                        <p class="text-apple-gray mb-4">经典数字益智游戏，考验你的策略思维。</p>
-                        <a href="#" onclick="loadGame('https://play2048.co')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 2 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/7cec1ae9d0a8425c8b1b0f77cfcd2fde-512x384.jpeg" alt="Tetris">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">俄罗斯方块</h3>
-                        <p class="text-apple-gray mb-4">经典俄罗斯方块游戏，考验你的空间思维。</p>
-                        <a href="#" onclick="loadGame('https://tetris.com/play-tetris')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 3 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/f3a76362f4174a8eb35d1524ef8a1154-512x384.jpeg" alt="Pacman">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">吃豆人</h3>
-                        <p class="text-apple-gray mb-4">经典街机游戏，重温童年美好回忆。</p>
-                        <a href="#" onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 4 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/62a72682e6d24a3ba5621b8b9621c833-512x384.jpeg" alt="Snake">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">贪吃蛇</h3>
-                        <p class="text-apple-gray mb-4">经典贪吃蛇游戏，简单但充满乐趣。</p>
-                        <a href="#" onclick="loadGame('https://playsnake.org')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 5 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/8c53fddf54704cd98a8fa2fbf3f5eb78-512x384.jpeg" alt="Minesweeper">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">扫雷</h3>
-                        <p class="text-apple-gray mb-4">经典扫雷游戏，考验你的逻辑思维。</p>
-                        <a href="#" onclick="loadGame('https://minesweeper.online')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 6 -->
-                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="game-thumbnail">
-                        <img src="https://img.gamedistribution.com/5b0abd4c0faa4dc5b48f5c1277e55b44-512x384.jpeg" alt="Chess">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">国际象棋</h3>
-                        <p class="text-apple-gray mb-4">经典国际象棋游戏，提升战略思维。</p>
-                        <a href="#" onclick="loadGame('https://www.chess.com/play/online')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">开始游戏</a>
-                    </div>
+        <div class="game-grid">
+            <div class="game-card">
+                <div class="game-image">2048</div>
+                <div class="game-info">
+                    <h2 class="game-title">2048益智游戏</h2>
+                    <p class="game-description">经典的2048数字游戏，通过方向键移动数字，合并相同的数字来获得2048。</p>
+                    <div class="game-controls">使用方向键控制移动</div>
+                    <a href="games/2048.html" class="play-button">开始游戏</a>
                 </div>
             </div>
-        </section>
-
-        <!-- 游戏界面 -->
-        <section id="play" class="mb-20">
-            <div class="game-container">
-                <iframe 
-                    src="about:blank"
-                    class="game-frame"
-                    title="Play Game Online"
-                    allow="fullscreen"
-                    loading="lazy">
-                </iframe>
-            </div>
-        </section>
-
-        <!-- 关于部分 -->
-        <section id="about" class="mb-20">
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- 网站介绍 -->
-                <div class="bg-white rounded-xl shadow-sm p-8">
-                    <h2 class="text-3xl font-bold mb-6 text-apple-black">关于我们</h2>
-                    <div class="space-y-4">
-                        <p class="text-lg text-apple-gray">
-                            我们致力于为玩家提供最好玩的在线游戏体验，精选多种类型的HTML5游戏。
-                        </p>
-                        <p class="text-lg text-apple-gray">
-                            所有游戏都经过精心挑选，确保适合各个年龄段的玩家，让您轻松享受游戏乐趣。
-                        </p>
-                        <div class="mt-6">
-                            <h3 class="text-xl font-semibold mb-3 text-apple-black">网站特色：</h3>
-                            <ul class="list-disc list-inside text-apple-gray space-y-2">
-                                <li>免费游戏体验</li>
-                                <li>多种游戏类型</li>
-                                <li>持续更新内容</li>
-                                <li>流畅的游戏体验</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 联系方式 -->
-                <div class="bg-white rounded-xl shadow-sm p-8">
-                    <h2 class="text-3xl font-bold mb-6 text-apple-black">联系我们</h2>
-                    <div class="space-y-4">
-                        <p class="text-lg text-apple-gray">
-                            如果您有任何问题或建议，欢迎随时与我们联系。
-                        </p>
-                        <p class="text-lg text-apple-gray">
-                            我们会认真听取每一位玩家的反馈，不断改进和优化游戏体验。
-                        </p>
-                        <div class="mt-6">
-                            <h3 class="text-xl font-semibold mb-3 text-apple-black">联系方式：</h3>
-                            <ul class="space-y-2 text-apple-gray">
-                                <li>邮箱：contact@monstersurvivorsclub.top</li>
-                                <li>微信：GameCenter</li>
-                                <li>QQ群：123456789</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="game-card">
+                <div class="game-image">🐍</div>
+                <div class="game-info">
+                    <h2 class="game-title">贪吃蛇</h2>
+                    <p class="game-description">控制蛇吃食物成长，注意不要撞到墙壁或自己的身体。</p>
+                    <div class="game-controls">使用方向键控制蛇的移动</div>
+                    <a href="games/snake.html" class="play-button">开始游戏</a>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer class="bg-apple-black text-white py-12 px-4 md:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">游戏中心</h2>
-                    <p class="text-apple-gray text-lg">享受最佳在线游戏体验</p>
+            <div class="game-card">
+                <div class="game-image">📦</div>
+                <div class="game-info">
+                    <h2 class="game-title">俄罗斯方块</h2>
+                    <p class="game-description">经典的俄罗斯方块游戏，通过旋转和移动方块来消除行数得分。</p>
+                    <div class="game-controls">方向键控制移动和旋转</div>
+                    <a href="games/tetris.html" class="play-button">开始游戏</a>
                 </div>
-                <div class="text-right">
-                    <p class="text-apple-gray text-lg">&copy; 2024 游戏中心</p>
-                    <p class="text-apple-gray text-lg">保留所有权利</p>
+            </div>
+            <div class="game-card">
+                <div class="game-image">🎴</div>
+                <div class="game-info">
+                    <h2 class="game-title">记忆翻牌</h2>
+                    <p class="game-description">考验记忆力的翻牌游戏，找出所有配对的卡片。</p>
+                    <div class="game-controls">点击卡片进行翻牌</div>
+                    <a href="games/memory.html" class="play-button">开始游戏</a>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">🧩</div>
+                <div class="game-info">
+                    <h2 class="game-title">数字拼图</h2>
+                    <p class="game-description">经典的数字华容道游戏，通过移动数字方块还原顺序。</p>
+                    <div class="game-controls">点击数字方块移动</div>
+                    <a href="games/puzzle.html" class="play-button">开始游戏</a>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">⚽</div>
+                <div class="game-info">
+                    <h2 class="game-title">弹球游戏</h2>
+                    <p class="game-description">经典的打砖块游戏，控制挡板反弹小球击碎所有砖块。</p>
+                    <div class="game-controls">使用鼠标控制挡板移动</div>
+                    <a href="games/ball.html" class="play-button">开始游戏</a>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        function loadGame(gameUrl) {
-            const iframe = document.querySelector('.game-frame');
-            iframe.src = gameUrl;
-            document.querySelector('#play').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+        <div class="footer">
+            <p>© 2024 HTML5游戏合集 - 所有游戏均由HTML5和JavaScript开发</p>
+        </div>
+    </div>
 </body>
 </html> 
