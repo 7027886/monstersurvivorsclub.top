@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-       <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <!-- Google tag (gtag.js) -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRNEMQ0MSS"></script>
-       <script>
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-
-           gtag('config', 'G-GRNEMQ0MSS');
-       </script>
-       <title>Monster Survivors - Epic Survival Adventure Game | Play Now</title>
-       <!-- 其他代码 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRNEMQ0MSS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GRNEMQ0MSS');
+    </script>
     <title>Monster Survivors - Epic Survival Adventure Game | Play Now</title>
     <meta name="description" content="Play Monster Survivors online - An epic survival adventure where you battle endless waves of monsters. Experience thrilling gameplay and upgrade your character to become the ultimate survivor.">
     <link rel="canonical" href="https://monstersurvivors.com">
@@ -84,6 +79,36 @@
             width: 100%;
         }
 
+        .game-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .game-thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .game-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-thumbnail img {
+            transform: scale(1.05);
+        }
+
         @media (max-width: 768px) {
             .game-container {
                 padding-top: 75%; /* 4:3 Aspect Ratio for mobile */
@@ -100,7 +125,7 @@
                     MonsterSurvivors
                 </a>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#play" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">Play Now</a>
+                    <a href="#games" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">Games</a>
                     <a href="#about" class="nav-link text-lg font-medium text-white hover:text-opacity-90 transition-colors">About</a>
                 </div>
                 <!-- 移动端菜单按钮 -->
@@ -114,13 +139,91 @@
         <!-- 移动端菜单 -->
         <div id="mobileMenu" class="hidden md:hidden bg-apple-blue">
             <div class="px-4 py-2 space-y-3">
-                <a href="#play" class="block text-white hover:text-opacity-90 py-2">Play Now</a>
+                <a href="#games" class="block text-white hover:text-opacity-90 py-2">Games</a>
                 <a href="#about" class="block text-white hover:text-opacity-90 py-2">About</a>
             </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 md:px-8 pt-24">
+        <!-- 游戏展示区域 -->
+        <section id="games" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 text-center">Popular Games</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 游戏卡片 1 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://img.gamedistribution.com/5b0abd4c0faa4dc5b48f5c1277e55b44-512x384.jpeg" alt="Monster Survivors">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Monster Survivors</h3>
+                        <p class="text-apple-gray mb-4">Epic survival adventure where you battle endless waves of monsters.</p>
+                        <a href="#play" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 2 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://play-lh.googleusercontent.com/4yZhBq0E7YE-pSuY0gZB2K39s5nW2qZGHhAfXZuGGkGS2v_Xh_RHQkZgRUJgPOVYng" alt="2048">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">2048</h3>
+                        <p class="text-apple-gray mb-4">Classic number puzzle game that tests your strategy skills.</p>
+                        <a href="#" onclick="loadGame('https://play2048.co')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 3 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://img.gamedistribution.com/f804d079d19f4e1b8d8d68d33ffe8bd8-512x384.jpeg" alt="Snake Game">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Snake Classic</h3>
+                        <p class="text-apple-gray mb-4">The timeless snake game with modern graphics and smooth controls.</p>
+                        <a href="#" onclick="loadGame('https://playsnake.org')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 4 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://img.gamedistribution.com/7cec1ae9d0a8425c8b1b0f77cfcd2fde-512x384.jpeg" alt="Tetris">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Tetris Classic</h3>
+                        <p class="text-apple-gray mb-4">The world-famous block-stacking puzzle game that never gets old.</p>
+                        <a href="#" onclick="loadGame('https://tetris.com/play-tetris')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 5 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://img.gamedistribution.com/62a72682e6d24a3ba5621b8b9621c833-512x384.jpeg" alt="Pacman">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Pacman Adventure</h3>
+                        <p class="text-apple-gray mb-4">Guide Pacman through mazes while avoiding ghosts in this arcade classic.</p>
+                        <a href="#" onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 6 -->
+                <div class="game-card bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="game-thumbnail">
+                        <img src="https://img.gamedistribution.com/8c53fddf54704cd98a8fa2fbf3f5eb78-512x384.jpeg" alt="Space Shooter">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Space Shooter</h3>
+                        <p class="text-apple-gray mb-4">Defend the galaxy in this action-packed space shooting adventure.</p>
+                        <a href="#" onclick="loadGame('https://www.crazygames.com/game/space-shooter')" class="inline-block bg-apple-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 游戏界面 -->
         <section id="play" class="mb-20">
             <div class="game-container">
@@ -213,6 +316,12 @@
                 });
             });
         });
+
+        function loadGame(gameUrl) {
+            const iframe = document.querySelector('.game-frame');
+            iframe.src = gameUrl;
+            document.querySelector('#play').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html> 
