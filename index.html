@@ -11,8 +11,8 @@
         gtag('js', new Date());
         gtag('config', 'G-GRNEMQ0MSS');
     </script>
-    <title>HTML5游戏合集 - 经典小游戏</title>
-    <meta name="description" content="免费在线游戏平台，提供多种类型的HTML5游戏，包括动作、益智、射击等多种游戏类型。">
+    <title>解压游戏乐园 - 让快乐触手可及</title>
+    <meta name="description" content="精选解压益智游戏，让您在繁忙之余找到片刻宁静。简单有趣的游戏，带来轻松愉悦的体验。">
     <meta property="og:title" content="在线游戏平台 - 免费HTML5游戏集合">
     <meta property="og:description" content="免费在线游戏平台，提供多种类型的HTML5游戏，包括动作、益智、射击等多种游戏类型。">
     <meta property="og:type" content="website">
@@ -33,126 +33,150 @@
         }
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #2c3e50;
         }
+
         .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #4CAF50, #2196F3);
-            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 2rem 1rem;
+            text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .header h1 {
-            font-size: 2.5em;
-            margin: 0;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         .header p {
-            font-size: 1.2em;
-            margin: 10px 0 0 0;
+            font-size: 1.2rem;
             opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
         }
+
         .game-card {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
+
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
+
         .game-image {
             width: 100%;
             height: 200px;
-            object-fit: cover;
-            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 4rem;
             color: white;
         }
+
         .game-info {
-            padding: 20px;
+            padding: 1.5rem;
+            flex-grow: 1;
         }
+
         .game-title {
-            font-size: 1.5em;
-            color: #333;
-            margin: 0 0 10px 0;
-            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
         }
+
         .game-description {
             color: #666;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
+
+        .game-controls {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
         .play-button {
             display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
             border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             text-align: center;
             width: 100%;
-            box-sizing: border-box;
         }
+
         .play-button:hover {
-            background: linear-gradient(45deg, #45a049, #4CAF50);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .game-controls {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #666;
-            padding: 10px;
-            background: #f8f8f8;
-            border-radius: 5px;
-        }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #666;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            margin-top: 3rem;
         }
+
         @media (max-width: 768px) {
             .game-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
-            .header h1 {
-                font-size: 2em;
+        }
+
+        @media (max-width: 480px) {
+            .game-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <h1>解压游戏乐园</h1>
+        <p>在繁忙的生活中，找到属于您的快乐时光。精选解压益智游戏，让心灵得到片刻宁静。</p>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <h1>HTML5游戏合集</h1>
-            <p>精选六款经典小游戏，快来体验吧！</p>
-        </div>
         <div class="game-grid">
             <div class="game-card">
                 <div class="game-image">🀄</div>
@@ -170,42 +194,6 @@
                     <p class="game-description">经典台球游戏，体验真实的台球乐趣</p>
                     <div class="game-controls">使用鼠标控制击球方向和力度</div>
                     <a href="https://www.crazygames.com/game/8-ball-billiards-classic" class="play-button" onclick="loadGame('https://www.crazygames.com/embed/8-ball-billiards-classic')">立即开始</a>
-                </div>
-            </div>
-            <div class="game-card">
-                <div class="game-image">📦</div>
-                <div class="game-info">
-                    <h2 class="game-title">俄罗斯方块</h2>
-                    <p class="game-description">经典的俄罗斯方块游戏，通过旋转和移动方块来消除行数得分。</p>
-                    <div class="game-controls">方向键控制移动和旋转</div>
-                    <a href="./games/tetris.html" target="_blank" class="play-button">开始游戏</a>
-                </div>
-            </div>
-            <div class="game-card">
-                <div class="game-image">🎴</div>
-                <div class="game-info">
-                    <h2 class="game-title">记忆翻牌</h2>
-                    <p class="game-description">考验记忆力的翻牌游戏，找出所有配对的卡片。</p>
-                    <div class="game-controls">点击卡片进行翻牌</div>
-                    <a href="./games/memory.html" target="_blank" class="play-button">开始游戏</a>
-                </div>
-            </div>
-            <div class="game-card">
-                <div class="game-image">🧩</div>
-                <div class="game-info">
-                    <h2 class="game-title">数字拼图</h2>
-                    <p class="game-description">经典的数字华容道游戏，通过移动数字方块还原顺序。</p>
-                    <div class="game-controls">点击数字方块移动</div>
-                    <a href="./games/puzzle.html" target="_blank" class="play-button">开始游戏</a>
-                </div>
-            </div>
-            <div class="game-card">
-                <div class="game-image">⚽</div>
-                <div class="game-info">
-                    <h2 class="game-title">弹球游戏</h2>
-                    <p class="game-description">经典的打砖块游戏，控制挡板反弹小球击碎所有砖块。</p>
-                    <div class="game-controls">使用鼠标控制挡板移动</div>
-                    <a href="./games/ball.html" target="_blank" class="play-button">开始游戏</a>
                 </div>
             </div>
             <div class="game-card">
@@ -245,9 +233,41 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <p>© 2024 HTML5游戏合集 - 所有游戏均由HTML5和JavaScript开发</p>
-        </div>
     </div>
+
+    <footer class="footer">
+        <p>© 2024 解压游戏乐园 - 让快乐触手可及</p>
+    </footer>
+
+    <script>
+        function loadGame(url) {
+            const gameWindow = window.open('', '_blank');
+            gameWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>游戏</title>
+                    <style>
+                        body, html {
+                            margin: 0;
+                            padding: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: hidden;
+                        }
+                        iframe {
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="${url}" allow="gamepad *;"></iframe>
+                </body>
+                </html>
+            `);
+        }
+    </script>
 </body>
 </html> 
