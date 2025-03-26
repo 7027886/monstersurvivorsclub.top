@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字拼图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        .puzzle-container {
+            margin: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            background: #ddd;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .puzzle-tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+        .puzzle-tile:hover {
+            transform: scale(0.98);
+        }
+        .empty {
+            background: #ddd;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .new-game-button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .new-game-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='../'">返回主页</button>
+    <div class="puzzle-container">
+        <div class="puzzle-grid" id="puzzle"></div>
+        <div class="controls">
+            <button class="new-game-button" onclick="initializePuzzle()">新游戏</button>
+        </div>
+    </div>
+    <script>
+        const puzzle = document.getElementById('puzzle');
+        let tiles = [];
+        let emptyTile = { row: 2, col: 2 };
+        
+        function createTile(number, row, col) {
+            const tile = document.createElement('div');
+            tile.className = number === 0 ? 'puzzle-tile empty' : 'puzzle-tile';
+            tile.textContent = number === 0 ? '' : number;
+            tile.addEventListener('click', () => moveTile(row, col));
+            return tile;
+        }
+        
+        function initializePuzzle() {
+            // 生成1-8的数字数组
+            const numbers = Array.from({length: 8}, (_, i) => i + 1);
+            numbers.push(0); // 添加空格
+            
+            // 随机打乱数组
+            for (let i = numbers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+            }
+            
+            // 创建拼图网格
+            puzzle.innerHTML = '';
+            tiles = [];
+            for (let row = 0; row < 3; row++) {
+                tiles[row] = [];
+                for (let col = 0; col < 3; col++) {
+                    const index = row * 3 + col;
+                    const number = numbers[index];
+                    tiles[row][col] = number;
+                    if (number === 0) {
+                        emptyTile = { row, col };
+                    }
+                    puzzle.appendChild(createTile(number, row, col));
+                }
+            }
+        }
+        
+        function moveTile(row, col) {
+            // 检查是否可以移动
+            if (isAdjacent(row, col, emptyTile.row, emptyTile.col)) {
+                // 交换位置
+                const temp = tiles[row][col];
+                tiles[row][col] = 0;
+                tiles[emptyTile.row][emptyTile.col] = temp;
+                
+                // 更新视图
+                puzzle.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        puzzle.appendChild(createTile(tiles[i][j], i, j));
+                    }
+                }
+                
+                // 更新空格位置
+                emptyTile = { row, col };
+                
+                // 检查是否完成
+                if (checkWin()) {
+                    setTimeout(() => {
+                        alert('恭喜你完成拼图！');
+                        initializePuzzle();
+                    }, 300);
+                }
+            }
+        }
+        
+        function isAdjacent(row1, col1, row2, col2) {
+            return (Math.abs(row1 - row2) === 1 && col1 === col2) ||
+                   (Math.abs(col1 - col2) === 1 && row1 === row2);
+        }
+        
+        function checkWin() {
+            let number = 1;
+            for (let row = 0; row < 3; row++) {
+                for (let col = 0; col < 3; col++) {
+                    if (row === 2 && col === 2) {
+                        if (tiles[row][col] !== 0) return false;
+                    } else {
+                        if (tiles[row][col] !== number) return false;
+                        number++;
+                    }
+                }
+            }
+            return true;
+        }
+        
+        // 初始化游戏
+        initializePuzzle();
+    </script>
+</body>
+</html> 
